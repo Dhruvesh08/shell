@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package cpugovernorctl;
+
+service CpuGovernorCtlService {
+  rpc SetGovernor (GovernorRequest) returns (Empty) {}
+  rpc GetGovernor (Empty) returns (GovernorResponse) {}
+  rpc SetCPUFrequency (CPUFrequencyRequest) returns (Empty) {}
+  rpc GetCPUFrequency (Empty) returns (CPUFrequencyResponse) {}
+}
+
+message Empty {}
+message GovernorRequest {
+  string governor = 1; // The governor to be set
+}
+
+message GovernorResponse {
+  string result = 1; // The result of the operation
+}
+
+message CPUFrequencyRequest {
+  string frequency = 1; // The CPU frequency to be set
+}
+
+message CPUFrequencyResponse {
+  string result = 1; // The result of the operation
+}

@@ -1,0 +1,47 @@
+syntax = "proto3";
+
+package deviceinfo;
+
+service DeviceInfoCtlService {
+    rpc GetMemoryInfo (Empty) returns (MemoryInfoResponse) {}
+    rpc GetDiskInfo (Empty) returns (DiskInfoResponse) {}
+    rpc GetCpuInfo (Empty) returns (CpuInfoResponse) {}
+
+}
+
+message Empty {}
+
+message MemoryInfo {
+  uint64 total_memory = 1;
+  uint64 available_memory = 2;
+  uint64 free_memory = 3;
+  }
+  
+  message CpuInfo {
+    string cpu_name = 1;
+    uint64 cpu_frequency = 2;
+    uint32 number_of_cores = 3;
+  }
+  
+  message DiskInfo {
+    string name = 1;
+    string fs = 2;
+    bool removable = 3;
+    string mount_point = 4;
+    uint64 used_space = 5;
+    uint64 total_space = 6;
+  }
+
+
+  message MemoryInfoResponse {
+   MemoryInfo memory_info = 1;
+  }
+  
+  message DiskInfoResponse {
+   repeated DiskInfo disk_info = 1;
+  }
+  
+  message CpuInfoResponse {
+    CpuInfo cpu_info = 1;
+  }
+  

@@ -1,0 +1,32 @@
+[package]
+name = "mecha_ctl_server"
+version = "0.1.0"
+edition = "2021"
+repository = "https://github.com/mecha-org/mecha-ctl"
+homepage = "https://github.com/mecha-org/mecha-ctl"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+prost = "0.11.9"
+tokio = { version = "1.32.0", features = ["macros", "rt-multi-thread"] }
+tonic = "0.9.2"
+log = "0.4.20"
+serde_yaml = "0.9.25"
+serde = { version = "1.0.164", features = ["derive"] }
+mecha_battery_ctl = { path = "../libs/battery-ctl" }
+mecha_network_ctl = {path = "../libs/wireless-ctl"}
+mecha_bluetooth_ctl ={path="../libs/bluetooth-ctl"}
+mecha_display_ctl = {path="../libs/display_ctl"}
+mecha_led_ctl = {path="../libs/led_ctl"}
+mecha_device_info_ctl = {path = "../libs/device-info-ctl"}
+mecha_metrics_ctl = {path = "../libs/device-metrics-ctl"}
+mecha-cpu-governor-ctl = {path = "../libs/cpu-governance-ctl"}
+mecha_motion_sensor_ctl = {path = "../libs/motion-sensor-ctl"}
+anyhow = { version = "1.0.75", features = ["backtrace"] }
+tracing = "0.1"
+tracing-subscriber = "0.3"
+
+
+[build-dependencies]
+tonic-build = "0.9.2"

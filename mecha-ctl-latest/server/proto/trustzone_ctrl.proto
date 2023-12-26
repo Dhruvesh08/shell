@@ -1,0 +1,116 @@
+syntax = "proto3";
+
+package trustzonectrl;
+
+// Define the KeyType enum.
+enum KeyType {
+    AUTH = 0;
+    ENC = 1;
+    HFWU = 2;
+    DEVM = 3;
+    SIGN = 4;
+    AGMT = 5;
+}
+
+// Define the KeySize enum.
+enum KeySize {
+    ECC256 = 0;
+    ECC384 = 1;
+    ECC521 = 2;
+    BRAINPOOL256 = 3;
+    BRAINPOOL384 = 4;
+    BRAINPOOL512 = 5;
+}
+
+service TrustZoneCtrlService{
+    rpc ReadCertification(ReadCertificationRequest) returns (ReadCertificationResponse);
+    rpc WriteCertificate(WriteCertificateRequest) returns (WriteCertificateResponse);
+    rpc RemoveCertificate(RemoveCertificateRequest) returns (RemoveCertificateResponse);
+    rpc GenerateKey(GenerateKeyRequest) returns (GenerateKeyResponse);
+    rpc SignData(SignDataRequest) returns (SignDataResponse);
+    rpc VerifyData(VerifyDataRequest) returns (VerifyDataResponse);
+    rpc DeriveKey(DeriveKeyRequest) returns (DeriveKeyResponse);
+    rpc GenerateHMAC(GenerateHMACRequest) returns (GenerateHMACResponse);
+}
+
+message ReadCertificationRequest {
+    string output_file = 1;
+    string region = 2;
+}
+
+message ReadCertificationResponse {
+    string certificate = 1;
+}
+
+message WriteCertificateRequest {
+    string cert_file = 1;
+    string oid = 2;
+}
+
+message WriteCertificateResponse {
+    bool success = 1;
+}
+
+message RemoveCertificateRequest {
+    string oid = 1;
+}
+
+message RemoveCertificateResponse {
+    bool success = 1;
+}
+
+message GenerateKeyRequest {
+    string oid = 1;
+    KeyType key_type = 2;
+    KeySize key_size = 3;
+    string output_file = 4;
+}
+
+message GenerateKeyResponse {
+    string public_key = 1;
+}
+
+message SignDataRequest {
+    string key_oid = 1;
+    string input_file = 2;
+    string output_file = 3;
+    bool hash_before_sign = 4;
+}
+
+message SignDataResponse {
+    string signed_data = 1;
+}
+
+message VerifyDataRequest {
+    string pubkey_file = 1;
+    string input_file = 2;
+    string signature_file = 3;
+    bool hash_before_verify = 4;
+}
+
+message VerifyDataResponse {
+    string verification_result = 1;
+}
+
+message DeriveKeyRequest {
+    string secret_oid = 1;
+    uint32 hkdf_type = 2;
+    string info_file = 3;
+    string salt_file = 4;
+    string output_file = 5;
+}
+
+message DeriveKeyResponse {
+    string derived_key = 1;
+}
+
+message GenerateHMACRequest {
+    string secret_oid = 1;
+    uint32 hmac_type = 2;
+    string input_data = 3;
+    string output_file = 4;
+}
+
+message GenerateHMACResponse {
+    string generated_hmac = 1;
+}

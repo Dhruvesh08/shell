@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package led_ctrl;
+
+service LedctlService {
+    rpc SetLed (LedColor) returns (Empty);
+    rpc ClearLed (LedColor) returns (Empty);
+}
+
+message LedColor {
+    bool red = 1;
+    bool green = 2;
+    bool blue = 3;
+}
+
+message Empty {}

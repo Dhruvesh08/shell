@@ -1,0 +1,11 @@
+[package]
+name = "mecha_bluetooth_ctl"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+anyhow = { version = "1.0.75", features = ["backtrace"] }
+bluer = { version = "0.16.0", features = ["full"] }
+tracing = "0.1"

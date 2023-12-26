@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package metrics;
+
+service MetricsService {
+    rpc GetCpuUsage(Empty) returns (GetCpuUsageResponse) {}
+    rpc GetMemoryUsage(Empty) returns (GetMemoryUsageResponse) {}
+    rpc GetDiskUsage(Empty) returns (GetDiskUsageResponse) {}
+}
+
+message Empty {}
+
+message GetCpuUsageResponse {
+    float cpu_usage = 1;
+}
+
+message GetMemoryUsageResponse {
+    uint64 memory_usage = 1;
+}
+
+message GetDiskUsageResponse {
+    uint64 disk_usage = 1;
+}
+
+
+
+

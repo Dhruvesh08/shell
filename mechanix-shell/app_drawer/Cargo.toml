@@ -1,0 +1,30 @@
+[package]
+name = "mecha_app_drawer"
+description = "App Drawer for Mecha Launcher, supports wlroots based compositors"
+version = "1.0.0"
+authors = ["Akshay Raina <akshayr@mechasystems.com", "Shoaib Merchant <shoaibm@mechasystems.com>"]
+documentation = "https://docs.mecha.so"
+edition = "2021"
+license = "MIT"
+repository = "https://github.com/mecha-org/mecha-launcher"
+homepage = "https://mecha.so"
+
+[dependencies]
+anyhow = "1.0.71"
+serde = { version = "1.0.163", features = ["derive"] }
+serde_yaml = "0.9.21"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+relm4 = "0.7.0-beta.1"
+relm4-components = "0.7.0-beta.1"
+relm4-macros = "0.7.0-beta.1"
+tonic = "0.9.2"
+# gtk4-layer-shell = { version = "0.1.5", optional = true }
+custom_widgets = { path = "../commons/custom_widgets"}
+
+[build-dependencies]
+tonic-build = "0.9.2"
+
+# [features]
+# default = ["layer-shell"]
+# layer-shell = ["gtk4-layer-shell"]

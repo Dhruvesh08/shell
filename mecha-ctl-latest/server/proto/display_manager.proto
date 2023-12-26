@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package displaymanager;
+
+service DisplayCtrlService {
+  rpc SetBrightness(SetBrightnessRequest) returns (SetBrightnessResponse);
+  rpc GetBrightness(GetBrightnessRequest) returns (GetBrightnessResponse);
+}
+
+message SetBrightnessRequest {
+  uint32 brightness = 1;
+}
+
+message SetBrightnessResponse {}
+
+message GetBrightnessRequest {}
+
+message GetBrightnessResponse {
+  uint32 brightness = 1;
+}

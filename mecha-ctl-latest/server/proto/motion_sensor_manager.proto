@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package motionsensor;
+
+service MotionSensorControlService {
+  rpc ReadValue (Empty) returns (ReadValueResponse) {}
+  rpc DetectMotion (Empty) returns (DetectEventResponse) {}
+}
+
+message Empty {}
+
+message ReadValueResponse {
+    double x_value = 1;
+    double y_value = 2;
+    double z_value = 3;
+}
+
+message DetectEventResponse {
+    bool is_motion_detected = 1;
+}
+
